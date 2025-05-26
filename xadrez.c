@@ -9,22 +9,32 @@ int main() {
     setlocale(LC_ALL, "pt_BR.utf8"); //Para poder usar acentuação no projeto
 
     //variáveis constantes
-    const int mov_Bispo = 5, mov_Torre = 5, mov_Rainha = 8;
+    const int mov_Bispo = 5,
+              mov_Torre = 5,
+              mov_Rainha = 8, 
+              mov_Cavalo = 1;
+
     //variáveis para não serem repetidas
-    int Bispo = mov_Bispo, Torre = mov_Torre, Rainha = mov_Rainha;
+    int Bispo = mov_Bispo,
+        Torre = mov_Torre,
+        Rainha = mov_Rainha, 
+        Cavalo = mov_Cavalo;
+
     int menu;
 
     do {
-
     //Menu de seleção de peças
     printf("\nmover:\n"); 
 
     printf("    ");
 
-    if (Bispo == 5) printf ("  1. Bispo");
-    if (Torre == 5) printf ("  2. Torre");
-    if (Rainha == 8) printf ("  3. Rainha");
-    printf("  4. Sair");
+    if (Bispo == mov_Bispo) printf ("  1. Bispo");
+    if (Torre == mov_Torre) printf ("  2. Torre");
+    if (Rainha == mov_Rainha) printf ("  3. Rainha");
+    if (mov_Cavalo == 1) printf ("  4. Cavalo");
+  
+    
+    printf("  5. Sair");
     printf("\n");
 
     scanf("%d", &menu);
@@ -69,7 +79,20 @@ int main() {
     break;
 
 
-    case 4://sair
+    case 4:
+
+    printf("\nMovimento Cavalo___\n\n");
+    while (Cavalo--) {
+
+        for (int i = 0; i < 2; i++) {
+            printf("Baixo\n"); }
+
+        printf("Esquerda\n"); }
+    
+    break;
+
+
+    case 5://sair
      printf("Saindo do programa...\n");
     break;
     
@@ -78,20 +101,8 @@ int main() {
     break;
     }
 
-    } while (menu != 4);
+    } while (menu != 5);
     
-
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
-
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
-
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
-
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
 
     // Nível Aventureiro - Movimentação do Cavalo
     // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
