@@ -1,66 +1,80 @@
 #include <stdio.h>
-
+#include <locale.h>
 // Desafio de Xadrez - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
 int main() {
 
-    int mov_Bispo = 5, mov_Torre = 5, mov_Rainha = 8;
+    setlocale(LC_ALL, "pt_BR.utf8"); //Para poder usar acentuação no projeto
+
+    //variáveis constantes
+    const int mov_Bispo = 5, mov_Torre = 5, mov_Rainha = 8;
+    //variáveis para não serem repetidas
+    int Bispo = mov_Bispo, Torre = mov_Torre, Rainha = mov_Rainha;
     int menu;
 
     do {
 
+    //Menu de seleção de peças
     printf("\nmover:\n"); 
 
-     printf("    ");
-    if (mov_Bispo == 5) printf ("  1. Bispo");
-    if (mov_Torre == 5) printf ("  2. Torre");
-    if (mov_Rainha == 8) printf ("  3. Rainha");
+    printf("    ");
+
+    if (Bispo == 5) printf ("  1. Bispo");
+    if (Torre == 5) printf ("  2. Torre");
+    if (Rainha == 8) printf ("  3. Rainha");
     printf("  4. Sair");
-     printf("\n");
+    printf("\n");
 
     scanf("%d", &menu);
 
+    while ((menu == 1 && Bispo != mov_Bispo) ||
+           (menu == 2 && Torre != mov_Torre) ||
+           (menu == 3 && Rainha != mov_Rainha)) {
+    printf("Essa peça já foi movida! Escolha outra.\n");
+    scanf("%d", &menu); }
+
+
     switch (menu) {
+
     case 1://Bispo
-     if (mov_Bispo == 5){
 
+      printf("\nMovimento Bispo___\n\n");
       for (int i = 0; i <= mov_Bispo; i++) {
+        // Movimento do Bispo: diagonal (Cima + Direita)
           printf("Cima - "); printf("Direita\n"); }
-          mov_Bispo++; 
+          Bispo++; 
 
-    } else {
-        printf("erro, numero invalido");
-    }
     break;
+
 
     case 2://Torre
-     if (mov_Torre == 5){
+    
+      printf("\nMovimento Torre___\n\n");
       for (int i = 0; i <= mov_Torre; i++) {
          printf("Direita\n"); }
-          mov_Torre++;
-    } else {
-        printf("erro, numero invalido");
-    }
+          Torre++;
+    
     break;
+
 
     case 3://Rainha
-     if (mov_Rainha == 8) {
+     
+      printf("\nMovimento Rainha___\n\n");
       for (int i = 0; i <= mov_Rainha; i++) {
           printf("Esquerda\n"); }
-          mov_Rainha++;
-    } else {
-        printf("erro, numero invalido");
-    }
+          Rainha++;
+   
     break;
 
-    case 4://sair
 
+    case 4://sair
+     printf("Saindo do programa...\n");
     break;
     
     default:
-    printf("erro, numero invalido");
+    printf("erro, número inválido");
     break;
     }
 
