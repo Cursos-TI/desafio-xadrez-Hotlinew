@@ -31,7 +31,7 @@ int main() {
     if (Bispo == mov_Bispo) printf ("  1. Bispo");
     if (Torre == mov_Torre) printf ("  2. Torre");
     if (Rainha == mov_Rainha) printf ("  3. Rainha");
-    if (mov_Cavalo == 1) printf ("  4. Cavalo");
+    if (Cavalo == mov_Cavalo) printf ("  4. Cavalo");
   
     
     printf("  5. Sair");
@@ -41,7 +41,8 @@ int main() {
 
     while ((menu == 1 && Bispo != mov_Bispo) ||
            (menu == 2 && Torre != mov_Torre) ||
-           (menu == 3 && Rainha != mov_Rainha)) {
+           (menu == 3 && Rainha != mov_Rainha)||
+           (menu == 4 && Cavalo != mov_Cavalo)) {
     printf("Essa peça já foi movida! Escolha outra.\n");
     scanf("%d", &menu); }
 
