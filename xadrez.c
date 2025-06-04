@@ -1,14 +1,8 @@
 #include <stdio.h>
 #include <locale.h>
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
-int main() {
 
-    setlocale(LC_ALL, "pt_BR.utf8"); //Para poder usar acentuação no projeto
-
-    //variáveis constantes
+  //variáveis constantes
     const int mov_Bispo = 5,
               mov_Torre = 5,
               mov_Rainha = 8, 
@@ -21,6 +15,42 @@ int main() {
         Cavalo = mov_Cavalo;
 
     int menu;
+
+    char *cima = "Cima",
+         *baixo = "Baixo",
+         *direita = "Direita",
+         *esquerda = "Esquerda";
+
+void movimento(int casas, char* direcao){
+  if (casas > 0){
+    printf("%s\n", direcao);
+    movimento(casas -1, direcao);}
+    }
+
+void movimento_diagonal(int casas, char* direcao1, char* direcao2) {
+  if (casas > 0) {
+     for (int i = 0; i < 1; i++) { 
+        for (int j = 0; j < 1; j++) {
+         printf("%s - ", direcao1);
+         printf("%s\n", direcao2);}}
+    movimento_diagonal(casas - 1, direcao1, direcao2);}
+}
+
+void movimento_L(char* direcao1, char* direcao2) {
+    for (int i = 0, j = 0; i < 3; i++) {
+      if (i < 2) {
+      printf("%s\n", direcao1);
+      continue;}
+
+      while (j < 1) {
+      printf("%s\n", direcao2); 
+      break;}}}
+
+
+
+int main() {
+
+    setlocale(LC_ALL, "pt_BR.utf8"); //Para poder usar acentuação no projeto
 
     do {
     //Menu de seleção de peças
@@ -52,10 +82,8 @@ int main() {
     case 1://Bispo
 
       printf("\nMovimento Bispo___\n\n");
-      for (int i = 0; i <= mov_Bispo; i++) {
-        // Movimento do Bispo: diagonal (Cima + Direita)
-          printf("Cima - "); printf("Direita\n"); }
-          Bispo++; 
+      movimento_diagonal(mov_Bispo,cima,direita); 
+      Bispo = 0;
 
     break;
 
@@ -63,9 +91,8 @@ int main() {
     case 2://Torre
     
       printf("\nMovimento Torre___\n\n");
-      for (int i = 0; i <= mov_Torre; i++) {
-         printf("Direita\n"); }
-          Torre++;
+      movimento(mov_Torre,direita);
+      Torre = 0;
     
     break;
 
@@ -73,23 +100,18 @@ int main() {
     case 3://Rainha
      
       printf("\nMovimento Rainha___\n\n");
-      for (int i = 0; i <= mov_Rainha; i++) {
-          printf("Esquerda\n"); }
-          Rainha++;
+      movimento(mov_Rainha,esquerda);
+      Rainha = 0;
    
     break;
 
 
     case 4:
 
-    printf("\nMovimento Cavalo___\n\n");
-    while (Cavalo--) {
+      printf("\nMovimento Cavalo___\n\n");
+      movimento_L(baixo, esquerda);
+      Cavalo = 0;
 
-        for (int i = 0; i < 2; i++) {
-            printf("Baixo\n"); }
-
-        printf("Esquerda\n"); }
-    
     break;
 
 
@@ -103,18 +125,6 @@ int main() {
     }
 
     } while (menu != 5);
-    
-
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
-
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
-
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
 
     return 0;
 }
